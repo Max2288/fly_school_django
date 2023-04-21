@@ -10,12 +10,16 @@ import json
 
 
 class EducationalModulesTest(TestCase):
+    """Education modules test."""
+
     def setUp(self):
+        """Setup function."""
         self.client = APIClient()
         self.module_data = {'module_number': 1, 'module_name': 'Test Module', 'module_description': 'Test Description'}
         self.module = EducationalModules.objects.create(**self.module_data)
 
     def test_create_module(self):
+        """Test for creating module."""
         response = self.client.post(reverse('educationalmodules-list'), data=self.module_data)
         serializer = EducationalModulesSerializer(data=self.module_data)
         self.assertTrue(serializer.is_valid())
@@ -23,6 +27,7 @@ class EducationalModulesTest(TestCase):
         self.assertEqual(response.data['module_name'], self.module_data['module_name'])
 
     def test_get_module(self):
+        """Test for getting module."""
         module_id = str(self.module.id)
         response = self.client.get(reverse('educationalmodules-detail', args=[module_id]))
         serializer = EducationalModulesSerializer(instance=self.module)
@@ -30,6 +35,7 @@ class EducationalModulesTest(TestCase):
         self.assertEqual(response.data['module_name'], serializer.data['module_name'])
 
     def test_update_module(self):
+        """Test for updating module."""
         module_id = str(self.module.id)
         updated_module_data = {
             'module_number': 1,
@@ -46,6 +52,7 @@ class EducationalModulesTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_delete_module(self):
+        """Test for updating module."""
         module_id = str(self.module.id)
         response = self.client.delete(reverse('educationalmodules-detail', args=[module_id]))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
