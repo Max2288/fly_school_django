@@ -13,7 +13,7 @@ class EducationalModulesTest(TestCase):
     """Education modules test."""
 
     def setUp(self):
-        """Setup function."""
+        """Set up the necessary dependencies."""
         self.client = APIClient()
         self.module_data = {'module_number': 1, 'module_name': 'Test Module', 'module_description': 'Test Description'}
         self.module = EducationalModules.objects.create(**self.module_data)
