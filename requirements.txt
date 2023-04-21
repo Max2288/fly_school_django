@@ -1,0 +1,5 @@
+djangorestframework==3.14.0
+Django==4.2
+python-dotenv==1.0.0
+django-extensions==3.2.1
+psycopg2-binary==2.9.6

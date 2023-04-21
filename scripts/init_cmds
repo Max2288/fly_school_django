@@ -1,0 +1,10 @@
+docker run -d\
+    --name education_modules -p 5444:5432 \
+    -v $HOME/postgresql/education_modules:/var/lib/postgresql/education_modules \
+    -e POSTGRES_PASSWORD=0000 \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_DB=education_db \
+    postgres:15.1
+
+
+psql -h 127.0.0.1 -p 5444 -U postgres education_db -f init_db.ddl
